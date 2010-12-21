@@ -27,7 +27,7 @@ module ErrorappNotifier
         client.use_ssl = config.ssl?
         client.verify_mode = OpenSSL::SSL::VERIFY_NONE if config.ssl?
         begin
-          response = client.post(url, "data=#{data}")
+          response = client.post(url, data)
           case response
             when Net::HTTPSuccess
               ErrorappNotifier.logger.info( "#{url} - #{response.message}")
