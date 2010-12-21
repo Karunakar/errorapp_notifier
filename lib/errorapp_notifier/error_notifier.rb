@@ -11,7 +11,7 @@ module ErrorappNotifier
         uniqueness_hash = exception_data.uniqueness_hash
         hash_param = uniqueness_hash.nil? ? nil: "&hash=#{uniqueness_hash}"
         url = "/api/projects/#{::ErrorappNotifier::Config.api_key}/fails?protocol_version=#{::ErrorappNotifier::PROTOCOL_VERSION}#{hash_param}"
-        data = exception_data.to_json
+        data = Zlib::Deflate.deflate(exception_data.to_json, Zlib::SYNC_FLUSH)
         call_remote(url, data)
       end
 
