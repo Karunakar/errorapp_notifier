@@ -88,8 +88,6 @@ module ErrorappNotifier
         headers['Cookie'] = headers['Cookie'].sub(/_session=\S+/, '_session=[FILTERED]')
       end
       headers
-      #TODO Headers parsing is a bit problem for now
-      return {}
     end
 
     def self.sanitize_session(request)
